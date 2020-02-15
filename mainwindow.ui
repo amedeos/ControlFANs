@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>Control FANs</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>images/coldness-device-cooler-fan-table-electric-cooling-6992.ico</normaloff>images/coldness-device-cooler-fan-table-electric-cooling-6992.ico</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QGroupBox" name="groupBox_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>791</width>
+      <height>401</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QGroupBox" name="hwmongroupBox">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>121</width>
+       <height>211</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>hwmon</string>
+     </property>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>104</width>
+        <height>176</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QRadioButton" name="hwmon0radioButton">
+         <property name="text">
+          <string>hwmon0</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="hwmon1radioButton">
+         <property name="text">
+          <string>hwmon1</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="hwmon2radioButton">
+         <property name="text">
+          <string>hwmon2</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="hwmon3radioButton">
+         <property name="text">
+          <string>hwmon3</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="hwmon4radioButton">
+         <property name="text">
+          <string>hwmon4</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="hwmon5radioButton">
+         <property name="text">
+          <string>hwmon5</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="fangroupBox">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>10</y>
+       <width>141</width>
+       <height>211</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>FANs</string>
+     </property>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>31</y>
+        <width>126</width>
+        <height>146</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QRadioButton" name="fan1radioButton">
+         <property name="text">
+          <string>Fan1</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QRadioButton" name="fan6radioButton">
+         <property name="text">
+          <string>Fan6</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QRadioButton" name="fan2radioButton">
+         <property name="text">
+          <string>Fan2</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QRadioButton" name="fan7radioButton">
+         <property name="text">
+          <string>Fan7</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QRadioButton" name="fan3radioButton">
+         <property name="text">
+          <string>Fan3</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QRadioButton" name="fan8radioButton">
+         <property name="text">
+          <string>Fan8</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QRadioButton" name="fan4radioButton">
+         <property name="text">
+          <string>Fan4</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QRadioButton" name="fan9radioButton">
+         <property name="text">
+          <string>Fan9</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QRadioButton" name="fan5radioButton">
+         <property name="text">
+          <string>Fan5</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QRadioButton" name="fan10radioButton">
+         <property name="text">
+          <string>Fan10</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="fanDatagroupBox">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>10</y>
+       <width>411</width>
+       <height>131</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>FAN data</string>
+     </property>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>373</width>
+        <height>83</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QLabel" name="fanAlarmlabel">
+         <property name="text">
+          <string>Alarm:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLCDNumber" name="fanAlarmlcdNumber"/>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="fanBeeplabel">
+         <property name="text">
+          <string>Beep:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLCDNumber" name="fanBeeplcdNumber"/>
+       </item>
+       <item row="0" column="4">
+        <widget class="QLabel" name="fanInputlabel">
+         <property name="text">
+          <string>Input:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="5">
+        <widget class="QLCDNumber" name="fanInputlcdNumber"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="fanMinlabel">
+         <property name="text">
+          <string>Min:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLCDNumber" name="fanMinlcdNumber"/>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="fanPulseslabel">
+         <property name="text">
+          <string>Pulses:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QLCDNumber" name="fanPulseslcdNumber"/>
+       </item>
+       <item row="1" column="4">
+        <widget class="QLabel" name="fanTargetlabel">
+         <property name="text">
+          <string>Target:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="5">
+        <widget class="QLCDNumber" name="fanTargetlcdNumber"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="fanTolerancelabel">
+         <property name="text">
+          <string>Tolerance:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLCDNumber" name="fanTolerancelcdNumber"/>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>140</y>
+       <width>511</width>
+       <height>251</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>PWM data</string>
+     </property>
+     <widget class="QLabel" name="pwmPwmlabel">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>58</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PWM:</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="pwmPwmtextEdit">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>30</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="pwmAutoPoint1Pwmlabel">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>58</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Auto Point1 PWM:</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="pwmAutoPoint1PwmtextEdit">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>70</y>
+        <width>91</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="pwmAutoPoint1Templabel">
+      <property name="geometry">
+       <rect>
+        <x>220</x>
+        <y>80</y>
+        <width>58</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Auto Point1 Temp:</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="pwmAutoPoint1TemptextEdit">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>70</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuControl_FANs">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionQuit"/>
+   </widget>
+   <widget class="QMenu" name="menuAbout">
+    <property name="title">
+     <string>About</string>
+    </property>
+   </widget>
+   <addaction name="menuControl_FANs"/>
+   <addaction name="menuAbout"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Quit</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
