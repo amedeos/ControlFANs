@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>470</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -30,7 +30,7 @@
       <x>0</x>
       <y>0</y>
       <width>791</width>
-      <height>401</height>
+      <height>381</height>
      </rect>
     </property>
     <property name="title">
@@ -48,7 +48,7 @@
      <property name="title">
       <string>hwmon</string>
      </property>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -115,7 +115,7 @@
      <property name="title">
       <string>FANs</string>
      </property>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -210,7 +210,7 @@
      <property name="title">
       <string>FAN data</string>
      </property>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -293,88 +293,167 @@
       </layout>
      </widget>
     </widget>
-    <widget class="QGroupBox" name="groupBox">
+    <widget class="QGroupBox" name="pwmDatagroupBox">
      <property name="geometry">
       <rect>
        <x>270</x>
        <y>140</y>
        <width>511</width>
-       <height>251</height>
+       <height>231</height>
       </rect>
      </property>
      <property name="title">
       <string>PWM data</string>
      </property>
-     <widget class="QLabel" name="pwmPwmlabel">
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>40</y>
-        <width>58</width>
-        <height>18</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>PWM:</string>
-      </property>
-     </widget>
-     <widget class="QTextEdit" name="pwmPwmtextEdit">
-      <property name="geometry">
-       <rect>
-        <x>80</x>
         <y>30</y>
-        <width>91</width>
-        <height>31</height>
+        <width>494</width>
+        <height>188</height>
        </rect>
       </property>
-     </widget>
-     <widget class="QLabel" name="pwmAutoPoint1Pwmlabel">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>80</y>
-        <width>58</width>
-        <height>18</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Auto Point1 PWM:</string>
-      </property>
-     </widget>
-     <widget class="QTextEdit" name="pwmAutoPoint1PwmtextEdit">
-      <property name="geometry">
-       <rect>
-        <x>80</x>
-        <y>70</y>
-        <width>91</width>
-        <height>31</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="pwmAutoPoint1Templabel">
-      <property name="geometry">
-       <rect>
-        <x>220</x>
-        <y>80</y>
-        <width>58</width>
-        <height>18</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Auto Point1 Temp:</string>
-      </property>
-     </widget>
-     <widget class="QTextEdit" name="pwmAutoPoint1TemptextEdit">
-      <property name="geometry">
-       <rect>
-        <x>320</x>
-        <y>70</y>
-        <width>101</width>
-        <height>31</height>
-       </rect>
-      </property>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="QLabel" name="pwmPwmlabel">
+         <property name="text">
+          <string>PWM:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="pwmPwmlineEdit"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="pwmAutoPoint1Pwmlabel">
+         <property name="text">
+          <string>Auto Point1 PWM:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="pwmAutoPoint1PwmlineEdit"/>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="pwmAutoPoint1Templabel">
+         <property name="text">
+          <string>Auto Point1 Temp:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QLineEdit" name="pwmAutoPoint1TemplineEdit"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="pwmAutoPoint2Pwmlabel">
+         <property name="text">
+          <string>Auto Point2 PWM:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="pwmAutoPoint2PwmlineEdit"/>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLabel" name="pwmAutoPoint2Templabel">
+         <property name="text">
+          <string>Auto Point2 Temp:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="QLineEdit" name="pwmAutoPoint2TemplineEdit"/>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="pwmAutoPoint3Pwmlabel">
+         <property name="text">
+          <string>Auto Point3 PWM:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="pwmAutoPoint3PwmlineEdit"/>
+       </item>
+       <item row="3" column="2">
+        <widget class="QLabel" name="pwmAutoPoint3Templabel">
+         <property name="text">
+          <string>Auto Point3 Temp:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="3">
+        <widget class="QLineEdit" name="pwmAutoPoint3TemplineEdit"/>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="pwmAutoPoint4Pwmlabel">
+         <property name="text">
+          <string>Auto Point4 PWM:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLineEdit" name="pwmAutoPoint4PwmlineEdit"/>
+       </item>
+       <item row="4" column="2">
+        <widget class="QLabel" name="pwmAutoPoint4Templabel">
+         <property name="text">
+          <string>Auto Point4 Temp:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="3">
+        <widget class="QLineEdit" name="pwmAutoPoint4TemplineEdit"/>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="pwmAutoPoint5Pwmlabel">
+         <property name="text">
+          <string>Auto Point5 PWM:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QLineEdit" name="pwmAutoPoint5PwmlineEdit"/>
+       </item>
+       <item row="5" column="2">
+        <widget class="QLabel" name="pwmAutoPoint5Templabel">
+         <property name="text">
+          <string>Auto Point5 Temp:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="3">
+        <widget class="QLineEdit" name="pwmAutoPoint5TemplineEdit"/>
+       </item>
+      </layout>
      </widget>
     </widget>
+   </widget>
+   <widget class="QPushButton" name="calcelpushButton">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>390</y>
+      <width>80</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Cancel</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="savepushButton">
+    <property name="geometry">
+     <rect>
+      <x>474</x>
+      <y>390</y>
+      <width>80</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Save</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

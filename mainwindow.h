@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QDir>
+#include <QString>
+#include <QMessageBox>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,5 +20,12 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+    // init methods
+    void setupMenuBar();
+    void hideGroup();
+    void disableHwmon();
+    void disableFan();
+    void enableHwmon();
 };
 #endif // MAINWINDOW_H
