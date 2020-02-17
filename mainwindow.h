@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QDir>
+#include <QFile>
 #include <QString>
 #include <QMessageBox>
 
@@ -18,6 +19,19 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_hwmon0radioButton_clicked();
+
+    void on_hwmon1radioButton_clicked();
+
+    void on_hwmon2radioButton_clicked();
+
+    void on_hwmon3radioButton_clicked();
+
+    void on_hwmon4radioButton_clicked();
+
+    void on_hwmon5radioButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -26,6 +40,9 @@ private:
     void hideGroup();
     void disableHwmon();
     void disableFan();
+    void disablePwm();
+    void disablePushButton();
     void enableHwmon();
+    void enableFan(QString hwmonDir);
 };
 #endif // MAINWINDOW_H

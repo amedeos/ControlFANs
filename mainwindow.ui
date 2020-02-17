@@ -305,7 +305,7 @@
      <property name="title">
       <string>PWM data</string>
      </property>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -429,31 +429,38 @@
      </widget>
     </widget>
    </widget>
-   <widget class="QPushButton" name="calcelpushButton">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>390</y>
-      <width>80</width>
-      <height>26</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Cancel</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="savepushButton">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
       <x>474</x>
       <y>390</y>
-      <width>80</width>
-      <height>26</height>
+      <width>254</width>
+      <height>28</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Save</string>
-    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="savepushButton">
+       <property name="text">
+        <string>Save</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="calcelpushButton">
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="editpushButton">
+       <property name="text">
+        <string>Edit</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
