@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "fanclass.h"
 
 #include <QApplication>
 

@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+fanClass g_fanDev;
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -89,6 +91,29 @@ void MainWindow::disablePwm() {
     ui->pwmAutoPoint4TemplineEdit->setDisabled(true);
     ui->pwmAutoPoint5PwmlineEdit->setDisabled(true);
     ui->pwmAutoPoint5TemplineEdit->setDisabled(true);
+}
+
+void MainWindow::setFanPwm() {
+    // set all fan / pwm data
+    int i = 0;
+
+    // alarm
+    i = g_fanDev.getFanAlarm();
+    ui->fanAlarmlcdNumber->display(i);
+    if (i > 0) {
+        ui->fanAlarmlcdNumber->setPalette(Qt::red);
+    } else {
+        ui->fanAlarmlcdNumber->setPalette(Qt::blue);
+    }
+
+    // input
+    i = g_fanDev.getFanInput();
+    ui->fanInputlcdNumber->display(g_fanDev.getFanInput());
+    if ( i > 0) {
+        ui->fanInputlcdNumber->setPalette(Qt::red);
+    } else {
+        ui->fanInputlcdNumber->setPalette(Qt::blue);
+    }
 }
 
 void MainWindow::disablePushButton() {
@@ -203,50 +228,119 @@ void MainWindow::enableFan(QString hwmonDir) {
     }
 }
 
+void MainWindow::showFanGroup() {
+    ui->pwmDatagroupBox->show();
+    ui->fanDatagroupBox->show();
+}
+
+void MainWindow::hideFanGroup() {
+    ui->pwmDatagroupBox->hide();
+    ui->fanDatagroupBox->hide();
+}
+
+void MainWindow::initHwmon(QString strHwmon) {
+    g_fanDev.setHwmon(strHwmon);
+    disableFan();
+    disablePwm();
+    hideFanGroup();
+    enableFan(strHwmon);
+}
+
 void MainWindow::on_hwmon0radioButton_clicked()
 {
     QString strSysClass = "/sys/class/hwmon/hwmon0";
 
-    disableFan();
-    enableFan(strSysClass);
+    initHwmon(strSysClass);
 }
 
 void MainWindow::on_hwmon1radioButton_clicked()
 {
     QString strSysClass = "/sys/class/hwmon/hwmon1";
 
-    disableFan();
-    enableFan(strSysClass);
+    initHwmon(strSysClass);
 }
 
 void MainWindow::on_hwmon2radioButton_clicked()
 {
     QString strSysClass = "/sys/class/hwmon/hwmon2";
 
-    disableFan();
-    enableFan(strSysClass);
+    initHwmon(strSysClass);
 }
 
 void MainWindow::on_hwmon3radioButton_clicked()
 {
     QString strSysClass = "/sys/class/hwmon/hwmon3";
 
-    disableFan();
-    enableFan(strSysClass);
+    initHwmon(strSysClass);
 }
 
 void MainWindow::on_hwmon4radioButton_clicked()
 {
     QString strSysClass = "/sys/class/hwmon/hwmon4";
 
-    disableFan();
-    enableFan(strSysClass);
+    initHwmon(strSysClass);
 }
 
 void MainWindow::on_hwmon5radioButton_clicked()
 {
     QString strSysClass = "/sys/class/hwmon/hwmon5";
 
-    disableFan();
-    enableFan(strSysClass);
+    initHwmon(strSysClass);
+}
+
+void MainWindow::initFan(QString strFan) {
+    g_fanDev.setFan(strFan);
+    showFanGroup();
+    setFanPwm();
+}
+
+void MainWindow::on_fan1radioButton_clicked()
+{
+    initFan("fan1");
+}
+
+void MainWindow::on_fan2radioButton_clicked()
+{
+    initFan("fan2");
+}
+
+void MainWindow::on_fan3radioButton_clicked()
+{
+    initFan("fan3");
+
+}
+
+void MainWindow::on_fan4radioButton_clicked()
+{
+    initFan("fan4");
+}
+
+void MainWindow::on_fan5radioButton_clicked()
+{
+    initFan("fan5");
+}
+
+void MainWindow::on_fan6radioButton_clicked()
+{
+    initFan("fan6");
+}
+
+void MainWindow::on_fan7radioButton_clicked()
+{
+    initFan("fan7");
+}
+
+void MainWindow::on_fan8radioButton_clicked()
+{
+    initFan("fan8");
+}
+
+void MainWindow::on_fan9radioButton_clicked()
+{
+    initFan("fan9");
+}
+
+void MainWindow::on_fan10radioButton_clicked()
+{
+    initFan("fan10");
 }
