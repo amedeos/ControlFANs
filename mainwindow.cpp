@@ -96,23 +96,100 @@ void MainWindow::disablePwm() {
 void MainWindow::setFanPwm() {
     // set all fan / pwm data
     int i = 0;
+    QColor highValue = Qt::red;
+    QColor lowValue = Qt::blue;
+    QString strHighValue = "color: red;";
+    QString strLowValue = "color: blue;";
 
     // alarm
     i = g_fanDev.getFanAlarm();
     ui->fanAlarmlcdNumber->display(i);
-    if (i > 0) {
-        ui->fanAlarmlcdNumber->setPalette(Qt::red);
+    if (i > 0 ) {
+        ui->fanAlarmlcdNumber->setPalette(highValue);
     } else {
-        ui->fanAlarmlcdNumber->setPalette(Qt::blue);
+        ui->fanAlarmlcdNumber->setPalette(lowValue);
+    }
+
+    // beep
+    i = g_fanDev.getFanBeep();
+    ui->fanBeeplcdNumber->display(i);
+    if ( i > 0 ) {
+        ui->fanBeeplcdNumber->setPalette(highValue);
+    } else {
+        ui->fanBeeplcdNumber->setPalette(lowValue);
     }
 
     // input
     i = g_fanDev.getFanInput();
-    ui->fanInputlcdNumber->display(g_fanDev.getFanInput());
-    if ( i > 0) {
-        ui->fanInputlcdNumber->setPalette(Qt::red);
+    ui->fanInputlcdNumber->display(i);
+    if ( i > 0 ) {
+        ui->fanInputlcdNumber->setPalette(highValue);
     } else {
-        ui->fanInputlcdNumber->setPalette(Qt::blue);
+        ui->fanInputlcdNumber->setPalette(lowValue);
+    }
+
+
+    // min
+    i = g_fanDev.getFanMin();
+    ui->fanMinlcdNumber->display(i);
+    if ( i > 0 ) {
+        ui->fanMinlcdNumber->setPalette(highValue);
+    } else {
+        ui->fanMinlcdNumber->setPalette(lowValue);
+    }
+
+    // pulses
+    i = g_fanDev.getFanPulses();
+    ui->fanPulseslcdNumber->display(i);
+    if ( i > 0 ) {
+        ui->fanPulseslcdNumber->setPalette(highValue);
+    } else {
+        ui->fanPulseslcdNumber->setPalette(lowValue);
+    }
+
+    // target
+    i = g_fanDev.getFanTarget();
+    ui->fanTargetlcdNumber->display(i);
+    if ( i > 0 ) {
+        ui->fanTargetlcdNumber->setPalette(highValue);
+    } else {
+        ui->fanTargetlcdNumber->setPalette(lowValue);
+    }
+
+    // tolerance
+    i = g_fanDev.getFanTolerance();
+    ui->fanTolerancelcdNumber->display(i);
+    if ( i > 0 ) {
+        ui->fanTolerancelcdNumber->setPalette(highValue);
+    } else {
+        ui->fanTolerancelcdNumber->setPalette(lowValue);
+    }
+
+    ////////////////// PWM //////////////////
+    i = g_fanDev.getPwmPwm();
+    ui->pwmPwmlineEdit->setText(QString::number(i));
+    if ( i > 0 ) {
+        ui->pwmPwmlineEdit->setStyleSheet(strHighValue);
+    } else {
+        ui->pwmPwmlineEdit->setStyleSheet(strLowValue);
+    }
+
+    // auto_point1_pwm
+    i = g_fanDev.getPwmAutoPoint1Pwm();
+    ui->pwmAutoPoint1PwmlineEdit->setText(QString::number(i));
+    if ( i > 0 ) {
+        ui->pwmAutoPoint1PwmlineEdit->setStyleSheet(strHighValue);
+    } else {
+        ui->pwmAutoPoint1PwmlineEdit->setStyleSheet(strLowValue);
+    }
+
+    // auto_point1_temp
+    i = g_fanDev.getPwmAutoPoint1Temp();
+    ui->pwmAutoPoint1TemplineEdit->setText(QString::number(i));
+    if ( i > 0 ) {
+        ui->pwmAutoPoint1TemplineEdit->setStyleSheet(strHighValue);
+    } else {
+        ui->pwmAutoPoint1TemplineEdit->setStyleSheet(strLowValue);
     }
 }
 
@@ -307,7 +384,6 @@ void MainWindow::on_fan2radioButton_clicked()
 void MainWindow::on_fan3radioButton_clicked()
 {
     initFan("fan3");
-
 }
 
 void MainWindow::on_fan4radioButton_clicked()

@@ -6,6 +6,7 @@
 #include <QFile>
 #include <QString>
 #include <QMessageBox>
+#include <QColor>
 #include "fanclass.h"
 
 QT_BEGIN_NAMESPACE

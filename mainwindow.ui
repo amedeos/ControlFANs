@@ -322,8 +322,12 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="pwmPwmlineEdit"/>
+       <item row="0" column="1" alignment="Qt::AlignRight">
+        <widget class="QLineEdit" name="pwmPwmlineEdit">
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
        </item>
        <item row="1" column="0">
         <widget class="QLabel" name="pwmAutoPoint1Pwmlabel">
@@ -333,7 +337,11 @@
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QLineEdit" name="pwmAutoPoint1PwmlineEdit"/>
+        <widget class="QLineEdit" name="pwmAutoPoint1PwmlineEdit">
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
        </item>
        <item row="1" column="2">
         <widget class="QLabel" name="pwmAutoPoint1Templabel">
@@ -343,7 +351,11 @@
         </widget>
        </item>
        <item row="1" column="3">
-        <widget class="QLineEdit" name="pwmAutoPoint1TemplineEdit"/>
+        <widget class="QLineEdit" name="pwmAutoPoint1TemplineEdit">
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
        </item>
        <item row="2" column="0">
         <widget class="QLabel" name="pwmAutoPoint2Pwmlabel">
@@ -353,7 +365,11 @@
         </widget>
        </item>
        <item row="2" column="1">
-        <widget class="QLineEdit" name="pwmAutoPoint2PwmlineEdit"/>
+        <widget class="QLineEdit" name="pwmAutoPoint2PwmlineEdit">
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
        </item>
        <item row="2" column="2">
         <widget class="QLabel" name="pwmAutoPoint2Templabel">
@@ -363,7 +379,11 @@
         </widget>
        </item>
        <item row="2" column="3">
-        <widget class="QLineEdit" name="pwmAutoPoint2TemplineEdit"/>
+        <widget class="QLineEdit" name="pwmAutoPoint2TemplineEdit">
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
        </item>
        <item row="3" column="0">
         <widget class="QLabel" name="pwmAutoPoint3Pwmlabel">
@@ -373,7 +393,11 @@
         </widget>
        </item>
        <item row="3" column="1">
-        <widget class="QLineEdit" name="pwmAutoPoint3PwmlineEdit"/>
+        <widget class="QLineEdit" name="pwmAutoPoint3PwmlineEdit">
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
        </item>
        <item row="3" column="2">
         <widget class="QLabel" name="pwmAutoPoint3Templabel">
@@ -383,7 +407,11 @@
         </widget>
        </item>
        <item row="3" column="3">
-        <widget class="QLineEdit" name="pwmAutoPoint3TemplineEdit"/>
+        <widget class="QLineEdit" name="pwmAutoPoint3TemplineEdit">
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
        </item>
        <item row="4" column="0">
         <widget class="QLabel" name="pwmAutoPoint4Pwmlabel">
@@ -393,7 +421,11 @@
         </widget>
        </item>
        <item row="4" column="1">
-        <widget class="QLineEdit" name="pwmAutoPoint4PwmlineEdit"/>
+        <widget class="QLineEdit" name="pwmAutoPoint4PwmlineEdit">
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
        </item>
        <item row="4" column="2">
         <widget class="QLabel" name="pwmAutoPoint4Templabel">
@@ -403,7 +435,11 @@
         </widget>
        </item>
        <item row="4" column="3">
-        <widget class="QLineEdit" name="pwmAutoPoint4TemplineEdit"/>
+        <widget class="QLineEdit" name="pwmAutoPoint4TemplineEdit">
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
        </item>
        <item row="5" column="0">
         <widget class="QLabel" name="pwmAutoPoint5Pwmlabel">
@@ -413,7 +449,11 @@
         </widget>
        </item>
        <item row="5" column="1">
-        <widget class="QLineEdit" name="pwmAutoPoint5PwmlineEdit"/>
+        <widget class="QLineEdit" name="pwmAutoPoint5PwmlineEdit">
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
        </item>
        <item row="5" column="2">
         <widget class="QLabel" name="pwmAutoPoint5Templabel">
@@ -423,13 +463,17 @@
         </widget>
        </item>
        <item row="5" column="3">
-        <widget class="QLineEdit" name="pwmAutoPoint5TemplineEdit"/>
+        <widget class="QLineEdit" name="pwmAutoPoint5TemplineEdit">
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
     </widget>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>474</x>

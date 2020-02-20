@@ -14,6 +14,8 @@ void fanClass::setHwmon(const QString &strHwmon) {
 
 void fanClass::setFan(const QString &strFan) {
     m_strFan = strFan;
+    m_strPwm = strFan;
+    m_strPwm.replace(QRegularExpression("fan"), "pwm");
 }
 
 QString fanClass::getHwmon() const {
@@ -24,8 +26,12 @@ QString fanClass::getFan() const {
     return m_strFan;
 }
 
-int fanClass::getFanData(const QString &strFanFile) const {
-    QFile fan_file(m_strHwmon + "/" + m_strFan + strFanFile);
+QString fanClass::getPwm() const {
+    return m_strPwm;
+}
+
+int fanClass::getFanData(const QString &strFan, const QString &strFanFile) const {
+    QFile fan_file(m_strHwmon + "/" + strFan + strFanFile);
 
     int i = 0;
     if( fan_file.open(QIODevice::ReadOnly) ) {
@@ -36,9 +42,41 @@ int fanClass::getFanData(const QString &strFanFile) const {
 }
 
 int fanClass::getFanAlarm() const {
-    return getFanData("_alarm");
+    return getFanData(getFan(), "_alarm");
+}
+
+int fanClass::getFanBeep() const {
+    return getFanData(getFan(), "_beep");
 }
 
 int fanClass::getFanInput() const {
-    return getFanData("_input");
+    return getFanData(getFan(), "_input");
+}
+
+int fanClass::getFanMin() const {
+    return getFanData(getFan(), "_min");
+}
+
+int fanClass::getFanPulses() const {
+    return getFanData(getFan(), "_pulses");
+}
+
+int fanClass::getFanTarget() const {
+    return getFanData(getFan(), "_target");
+}
+
+int fanClass::getFanTolerance() const {
+    return getFanData(getFan(), "_tolerance");
+}
+
+int fanClass::getPwmPwm() const {
+    return getFanData(getPwm(), "");
+}
+
+int fanClass::getPwmAutoPoint1Pwm() const {
+    return getFanData(getPwm(), "_auto_point1_pwm");
+}
+
+int fanClass::getPwmAutoPoint1Temp() const {
+    return getFanData(getPwm(), "_auto_point1_temp");
 }
