@@ -22,6 +22,7 @@ SOURCES += \
 
 HEADERS += \
     fanclass.h \
+    global.h \
     mainwindow.h
 
 FORMS += \

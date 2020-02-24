@@ -7,13 +7,16 @@
 #include <QString>
 #include <QMessageBox>
 #include <QColor>
+#include <QValidator>
+#include <QIntValidator>
+#include <QMessageBox>
+#include <QtGlobal>
 #include "fanclass.h"
+#include "global.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
-
-extern fanClass g_fanDev;
 
 class MainWindow : public QMainWindow
 {
@@ -56,6 +59,12 @@ private slots:
 
     void on_fan10radioButton_clicked();
 
+    void on_editpushButton_clicked();
+
+    void on_calcelpushButton_clicked();
+
+    void on_savepushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -66,6 +75,7 @@ private:
     void disableHwmon();
     void disableFan();
     void disablePwm();
+    void enablePwm();
     void setFanPwm();
     void disablePushButton();
     void enableHwmon();
@@ -73,5 +83,19 @@ private:
     void showFanGroup();
     void initHwmon(QString strHwmon);
     void initFan(QString strFan);
+    void enableEditButton();
+    void setupSignalsAndSlots();
+    void setupPwmValidator();
+    void savePwmPwm(const int i);
+    void savePwmAutoPoint1Pwm(const int i);
+    void savePwmAutoPoint2Pwm(const int i);
+    void savePwmAutoPoint3Pwm(const int i);
+    void savePwmAutoPoint4Pwm(const int i);
+    void savePwmAutoPoint5Pwm(const int i);
+    void savePwmAutoPoint1Temp(const int i);
+    void savePwmAutoPoint2Temp(const int i);
+    void savePwmAutoPoint3Temp(const int i);
+    void savePwmAutoPoint4Temp(const int i);
+    void savePwmAutoPoint5Temp(const int i);
 };
 #endif // MAINWINDOW_H
