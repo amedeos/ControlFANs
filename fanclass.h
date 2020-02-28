@@ -16,8 +16,11 @@ public:
     //~fanClass();
 
     void setHwmon(const QString& strHwmon );
+    void setHwmon(const QString& strHwmon, const QString& strHwmonNum );
+    void setHwmonNum(const QString& strHwmonNum );
     void setFan(const QString& strFan );
     QString getHwmon() const;
+    QString getHwmonNum() const;
     QString getFan() const;
     QString getPwm() const;
     int getFanAlarm() const;
@@ -56,6 +59,7 @@ signals:
 public slots:
 private:
     QString m_strHwmon;
+    QString m_strHwmonNum;
     QString m_strFan;
     QString m_strPwm;
     int m_intPwmPwm;

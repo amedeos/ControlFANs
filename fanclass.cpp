@@ -12,6 +12,17 @@ void fanClass::setHwmon(const QString &strHwmon) {
     fanClass::setFan("");
 }
 
+void fanClass::setHwmon(const QString &strHwmon, const QString &strHwmonNum)
+{
+    fanClass::setHwmonNum(strHwmonNum);
+    fanClass::setHwmon(strHwmon + "/" + strHwmonNum);
+}
+
+void fanClass::setHwmonNum(const QString &strHwmonNum)
+{
+    m_strHwmonNum = strHwmonNum;
+}
+
 void fanClass::setFan(const QString &strFan) {
     m_strFan = strFan;
     m_strPwm = strFan;
@@ -20,6 +31,11 @@ void fanClass::setFan(const QString &strFan) {
 
 QString fanClass::getHwmon() const {
     return m_strHwmon;
+}
+
+QString fanClass::getHwmonNum() const
+{
+    return m_strHwmonNum;
 }
 
 QString fanClass::getFan() const {

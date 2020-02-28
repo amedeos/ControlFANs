@@ -11,6 +11,7 @@
 #include <QIntValidator>
 #include <QMessageBox>
 #include <QtGlobal>
+#include <QProcess>
 #include "fanclass.h"
 #include "global.h"
 
@@ -65,6 +66,8 @@ private slots:
 
     void on_savepushButton_clicked();
 
+    void on_createSystemDpushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -81,6 +84,7 @@ private:
     void enableHwmon();
     void enableFan(QString hwmonDir);
     void showFanGroup();
+    void initHwmon();
     void initHwmon(QString strHwmon);
     void initFan(QString strFan);
     void enableEditButton();
@@ -97,5 +101,7 @@ private:
     void savePwmAutoPoint3Temp(const int i);
     void savePwmAutoPoint4Temp(const int i);
     void savePwmAutoPoint5Temp(const int i);
+    void createSystemDStanza();
+    QString createSystemDExexStart();
 };
 #endif // MAINWINDOW_H

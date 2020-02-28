@@ -473,12 +473,12 @@
      </widget>
     </widget>
    </widget>
-   <widget class="QWidget" name="layoutWidget">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>474</x>
+      <x>302</x>
       <y>390</y>
-      <width>254</width>
+      <width>474</width>
       <height>28</height>
      </rect>
     </property>
@@ -501,6 +501,20 @@
       <widget class="QPushButton" name="editpushButton">
        <property name="text">
         <string>Edit</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="createSystemDpushButton">
+       <property name="text">
+        <string>Create systemD</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="deleteSystemDpushButton">
+       <property name="text">
+        <string>Delete systemD</string>
        </property>
       </widget>
      </item>
