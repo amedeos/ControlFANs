@@ -21,6 +21,10 @@ MainWindow::MainWindow(QWidget *parent)
     g_systemdDir = "/etc/systemd/system";
     g_systemdName = "controlfan";
 
+    //g_hwmonDir = "/home/amedeo/MEGA/Lavoro/QT/hwmon";
+    //g_editUser = "amedeo";
+    //g_systemdDir = "/tmp";
+
     setFixedSize(800, 470);
 
     setupMenuBar();
