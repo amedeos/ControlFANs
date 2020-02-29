@@ -325,6 +325,16 @@ void MainWindow::enableEditButton() {
     ui->createSystemDpushButton->setDisabled(false);
 }
 
+void MainWindow::enableDeleteSystemDStanza()
+{
+    QString sFile = g_systemdDir + "/" + g_systemdName + "-" + g_fanDev.getHwmonNum() + "-" + g_fanDev.getFan() + ".service";
+    QFileInfo systemDfile( sFile );
+
+    if ( systemDfile.exists() && systemDfile.isFile() ) {
+        ui->deleteSystemDpushButton->setDisabled(false);
+    }
+}
+
 void MainWindow::enableHwmon(){
     // enable all available hwmon
 
@@ -439,8 +449,7 @@ void MainWindow::hideFanGroup() {
     ui->fanDatagroupBox->hide();
 }
 
-void MainWindow::initHwmon() {
-    QString strHwmon = g_fanDev.getHwmon();
+void MainWindow::initHwmon(QString strHwmon) {
     g_fanDev.setHwmon(strHwmon);
     disableFan();
     disablePwm();
@@ -448,12 +457,9 @@ void MainWindow::initHwmon() {
     enableFan(strHwmon);
 }
 
-void MainWindow::initHwmon(QString strHwmon) {
-    g_fanDev.setHwmon(strHwmon);
-    disableFan();
-    disablePwm();
-    hideFanGroup();
-    enableFan(strHwmon);
+void MainWindow::initHwmon() {
+    QString strHwmon = g_fanDev.getHwmon();
+    initHwmon(strHwmon);
 }
 
 void MainWindow::on_hwmon0radioButton_clicked()
@@ -505,6 +511,7 @@ void MainWindow::initFan(QString strFan) {
     setFanPwm();
     disablePushButton();
     enableEditButton();
+    enableDeleteSystemDStanza();
 }
 
 void MainWindow::on_fan1radioButton_clicked()
@@ -776,6 +783,11 @@ QString MainWindow::createSystemDExexStart()
     return s;
 }
 
+void MainWindow::deleteSystemDStanza()
+{
+
+}
+
 void MainWindow::on_savepushButton_clicked()
 {
     int i = ui->pwmPwmlineEdit->text().toInt();
@@ -819,4 +831,24 @@ void MainWindow::on_savepushButton_clicked()
 void MainWindow::on_createSystemDpushButton_clicked()
 {
     createSystemDStanza();
+}
+
+void MainWindow::on_deleteSystemDpushButton_clicked()
+{
+    QString sFile = g_systemdDir + "/" + g_systemdName + "-" + g_fanDev.getHwmonNum() + "-" + g_fanDev.getFan() + ".service";
+    QFile systemDfile( sFile );
+
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Confirm delete", "Are you sure to remove systemD stanza?\n" + sFile,
+                                  QMessageBox::Yes|QMessageBox::No);
+
+    if ( reply == QMessageBox::Yes ) {
+        QString strStanza = g_systemdName + "-" + g_fanDev.getHwmonNum() + "-" + g_fanDev.getFan() + ".service";
+        QProcess::execute("systemctl stop " + strStanza);
+        QProcess::execute("systemctl disable " + strStanza);
+        systemDfile.remove();
+        QProcess::execute("systemctl daemon-reload");
+        QProcess::execute("systemctl reset-failed");
+        initFan(g_fanDev.getFan());
+    }
 }

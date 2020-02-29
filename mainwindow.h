@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QDir>
 #include <QFile>
+#include <QFileInfo>
 #include <QString>
 #include <QMessageBox>
 #include <QColor>
@@ -68,6 +69,8 @@ private slots:
 
     void on_createSystemDpushButton_clicked();
 
+    void on_deleteSystemDpushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -84,10 +87,11 @@ private:
     void enableHwmon();
     void enableFan(QString hwmonDir);
     void showFanGroup();
-    void initHwmon();
     void initHwmon(QString strHwmon);
+    void initHwmon();
     void initFan(QString strFan);
     void enableEditButton();
+    void enableDeleteSystemDStanza();
     void setupSignalsAndSlots();
     void setupPwmValidator();
     void savePwmPwm(const int i);
@@ -103,5 +107,6 @@ private:
     void savePwmAutoPoint5Temp(const int i);
     void createSystemDStanza();
     QString createSystemDExexStart();
+    void deleteSystemDStanza();
 };
 #endif // MAINWINDOW_H
