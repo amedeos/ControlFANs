@@ -73,8 +73,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-
-    // init methods
+    void aboutMessage();
     void setupMenuBar();
     void hideGroup();
     void hideFanGroup();

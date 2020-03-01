@@ -21,10 +21,6 @@ MainWindow::MainWindow(QWidget *parent)
     g_systemdDir = "/etc/systemd/system";
     g_systemdName = "controlfan";
 
-    //g_hwmonDir = "/home/amedeo/MEGA/Lavoro/QT/hwmon";
-    //g_editUser = "amedeo";
-    //g_systemdDir = "/tmp";
-
     setFixedSize(800, 470);
 
     setupMenuBar();
@@ -58,8 +54,19 @@ void MainWindow::setupPwmValidator() {
     ui->pwmAutoPoint5TemplineEdit->setValidator(tempValidator);
 }
 
+void MainWindow::aboutMessage()
+{
+    QMessageBox::about(this, tr("About ControlFANs"),
+             tr("<b>ControlFANs</b> could be used to edit PWM of your FANs!"
+                "<br/><br/>"
+                "Written by: <b>Amedeo Salvati</b>"
+                "<br/>"
+                "email: <b>amedeo at linux dot com</b>"));
+}
+
 void MainWindow::setupSignalsAndSlots() {
     connect(ui->actionQuit, &QAction::triggered, this, &QApplication::quit);
+    connect(ui->actionAbout_ControlFANs, &QAction::triggered, this, &MainWindow::aboutMessage);
 }
 
 void MainWindow::setupMenuBar() {

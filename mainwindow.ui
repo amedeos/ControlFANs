@@ -473,7 +473,7 @@
      </widget>
     </widget>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>302</x>
@@ -540,6 +540,7 @@
     <property name="title">
      <string>About</string>
     </property>
+    <addaction name="actionAbout_ControlFANs"/>
    </widget>
    <addaction name="menuControl_FANs"/>
    <addaction name="menuAbout"/>
@@ -548,6 +549,11 @@
   <action name="actionQuit">
    <property name="text">
     <string>Quit</string>
+   </property>
+  </action>
+  <action name="actionAbout_ControlFANs">
+   <property name="text">
+    <string>About ControlFANs</string>
    </property>
   </action>
  </widget>
