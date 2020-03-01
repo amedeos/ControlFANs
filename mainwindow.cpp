@@ -827,7 +827,7 @@ void MainWindow::on_savepushButton_clicked()
     i = ui->pwmAutoPoint5TemplineEdit->text().toInt();
     savePwmAutoPoint5Temp(i);
 
-    QMessageBox::information(this, "Saving...", "Save successful!");
+    QMessageBox::information(this, "Saving...", "Successfully saved!");
 
     initFan(g_fanDev.getFan());
 }
