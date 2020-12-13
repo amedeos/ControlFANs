@@ -95,6 +95,16 @@ void MainWindow::disableHwmon(){
     ui->hwmon4radioButton->setDisabled(true);
     ui->hwmon5radioButton->setCheckable(false);
     ui->hwmon5radioButton->setDisabled(true);
+    ui->hwmon6radioButton->setCheckable(false);
+    ui->hwmon6radioButton->setDisabled(true);
+    ui->hwmon7radioButton->setCheckable(false);
+    ui->hwmon7radioButton->setDisabled(true);
+    ui->hwmon8radioButton->setCheckable(false);
+    ui->hwmon8radioButton->setDisabled(true);
+    ui->hwmon9radioButton->setCheckable(false);
+    ui->hwmon9radioButton->setDisabled(true);
+    ui->hwmon10radioButton->setCheckable(false);
+    ui->hwmon10radioButton->setDisabled(true);
 }
 
 void MainWindow::disableFan(){
@@ -384,6 +394,36 @@ void MainWindow::enableHwmon(){
         ui->hwmon5radioButton->setCheckable(true);
         ui->hwmon5radioButton->setDisabled(false);
     }
+
+    QDir hwmon6Dir = g_hwmonDir + "/hwmon6";
+    if (hwmon6Dir.exists()) {
+        ui->hwmon6radioButton->setCheckable(true);
+        ui->hwmon6radioButton->setDisabled(false);
+    }
+
+    QDir hwmon7Dir = g_hwmonDir + "/hwmon7";
+    if (hwmon7Dir.exists()) {
+        ui->hwmon7radioButton->setCheckable(true);
+        ui->hwmon7radioButton->setDisabled(false);
+    }
+
+    QDir hwmon8Dir = g_hwmonDir + "/hwmon8";
+    if (hwmon8Dir.exists()) {
+        ui->hwmon8radioButton->setCheckable(true);
+        ui->hwmon8radioButton->setDisabled(false);
+    }
+
+    QDir hwmon9Dir = g_hwmonDir + "/hwmon9";
+    if (hwmon9Dir.exists()) {
+        ui->hwmon9radioButton->setCheckable(true);
+        ui->hwmon9radioButton->setDisabled(false);
+    }
+
+    QDir hwmon10Dir = g_hwmonDir + "/hwmon10";
+    if (hwmon10Dir.exists()) {
+        ui->hwmon10radioButton->setCheckable(true);
+        ui->hwmon10radioButton->setDisabled(false);
+    }
 }
 
 void MainWindow::enableFan(QString hwmonDir) {
@@ -511,6 +551,41 @@ void MainWindow::on_hwmon4radioButton_clicked()
 void MainWindow::on_hwmon5radioButton_clicked()
 {
     g_fanDev.setHwmon(g_hwmonDir, "hwmon5");
+
+    initHwmon();
+}
+
+void MainWindow::on_hwmon6radioButton_clicked()
+{
+    g_fanDev.setHwmon(g_hwmonDir, "hwmon6");
+
+    initHwmon();
+}
+
+void MainWindow::on_hwmon7radioButton_clicked()
+{
+    g_fanDev.setHwmon(g_hwmonDir, "hwmon7");
+
+    initHwmon();
+}
+
+void MainWindow::on_hwmon8radioButton_clicked()
+{
+    g_fanDev.setHwmon(g_hwmonDir, "hwmon8");
+
+    initHwmon();
+}
+
+void MainWindow::on_hwmon9radioButton_clicked()
+{
+    g_fanDev.setHwmon(g_hwmonDir, "hwmon9");
+
+    initHwmon();
+}
+
+void MainWindow::on_hwmon10radioButton_clicked()
+{
+    g_fanDev.setHwmon(g_hwmonDir, "hwmon10");
 
     initHwmon();
 }

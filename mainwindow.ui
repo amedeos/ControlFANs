@@ -42,7 +42,7 @@
        <x>10</x>
        <y>10</y>
        <width>121</width>
-       <height>211</height>
+       <height>361</height>
       </rect>
      </property>
      <property name="title">
@@ -54,7 +54,7 @@
         <x>10</x>
         <y>30</y>
         <width>104</width>
-        <height>176</height>
+        <height>326</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -97,6 +97,41 @@
         <widget class="QRadioButton" name="hwmon5radioButton">
          <property name="text">
           <string>hwmon5</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="hwmon6radioButton">
+         <property name="text">
+          <string>hwmon6</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="hwmon7radioButton">
+         <property name="text">
+          <string>hwmon7</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="hwmon8radioButton">
+         <property name="text">
+          <string>hwmon8</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="hwmon9radioButton">
+         <property name="text">
+          <string>hwmon9</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="hwmon10radioButton">
+         <property name="text">
+          <string>hwmon10</string>
          </property>
         </widget>
        </item>

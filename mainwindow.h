@@ -41,6 +41,16 @@ private slots:
 
     void on_hwmon5radioButton_clicked();
 
+    void on_hwmon6radioButton_clicked();
+
+    void on_hwmon7radioButton_clicked();
+
+    void on_hwmon8radioButton_clicked();
+
+    void on_hwmon9radioButton_clicked();
+
+    void on_hwmon10radioButton_clicked();
+
     void on_fan1radioButton_clicked();
 
     void on_fan2radioButton_clicked();
