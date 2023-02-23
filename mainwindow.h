@@ -81,6 +81,10 @@ private slots:
 
     void on_deleteSystemDpushButton_clicked();
 
+    void on_createSystemDAllpushButton_clicked();
+
+    void on_deleteSystemDAllpushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     void aboutMessage();
@@ -101,6 +105,7 @@ private:
     void initFan(QString strFan);
     void enableEditButton();
     void enableDeleteSystemDStanza();
+    void refreshDeleteSystemDAllStanza();
     void setupSignalsAndSlots();
     void setupPwmValidator();
     void savePwmPwm(const int i);

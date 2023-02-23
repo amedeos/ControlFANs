@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     g_hwmonDir = "/sys/class/hwmon";
     g_editUser = "root";
     g_systemdDir = "/etc/systemd/system";
-    g_systemdName = "controlfan";
+    g_systemdName = "controlfans";
 
     setFixedSize(800, 470);
 
@@ -32,6 +32,7 @@ MainWindow::MainWindow(QWidget *parent)
     enableHwmon();
     setupSignalsAndSlots();
     setupPwmValidator();
+    refreshDeleteSystemDAllStanza();
 }
 
 MainWindow::~MainWindow()
@@ -344,6 +345,7 @@ void MainWindow::disablePushButton() {
 void MainWindow::enableEditButton() {
     ui->editpushButton->setDisabled(false);
     ui->createSystemDpushButton->setDisabled(false);
+    ui->createSystemDAllpushButton->setDisabled(false);
 }
 
 void MainWindow::enableDeleteSystemDStanza()
@@ -353,6 +355,18 @@ void MainWindow::enableDeleteSystemDStanza()
 
     if ( systemDfile.exists() && systemDfile.isFile() ) {
         ui->deleteSystemDpushButton->setDisabled(false);
+    }
+}
+
+void MainWindow::refreshDeleteSystemDAllStanza()
+{
+    QString sFile = g_systemdDir + "/" + g_systemdName + ".service";
+    QFileInfo systemDfile( sFile );
+
+    if ( systemDfile.exists() && systemDfile.isFile() ) {
+        ui->deleteSystemDAllpushButton->setDisabled(false);
+    } else {
+        ui->deleteSystemDAllpushButton->setDisabled(true);
     }
 }
 
@@ -823,7 +837,7 @@ void MainWindow::createSystemDStanza()
         QProcess::execute("systemctl daemon-reload");
 
         QMessageBox::information(this, "Service installed successfully",
-                                 "Service installed successfully!\nNow you can enable the service running:\nsystemtcl enable " +
+                                 "Service installed successfully!\nNow you can enable the service running:\nsystemctl enable " +
                                  g_systemdName + "-" + g_fanDev.getHwmonNum() + "-" + g_fanDev.getFan() + ".service");
     } else {
         QMessageBox::warning(this, "Wrong permission", "You don't have write permission on file:\n" + sFile);
@@ -867,6 +881,80 @@ QString MainWindow::createSystemDExexStart()
         s = s + "ExecStart=/bin/sh -c 'echo " + QString::number(g_fanDev.getPwmAutoPoint5Temp()) + " > " + pwmFile + "_auto_point5_temp'\n";
     }
     return s;
+}
+
+void MainWindow::on_createSystemDAllpushButton_clicked() {
+    QString sFile = g_systemdDir + "/" + g_systemdName + ".service";
+    QFile systemDfile( sFile );
+    QTextStream out(&systemDfile);
+    if ( systemDfile.open(QIODevice::WriteOnly | QIODevice::Text) ) {
+        QString s = "[Unit]\n";
+        s = s + "Description=" + g_systemdName + "\n";
+        s = s + "DefaultDependencies=no\n";
+        s = s + "After=sysinit.target local-fs.target suspend.target hibernate.target\n";
+        s = s + "Before=basic.target\n\n";
+        s = s + "[Service]\n";
+        s = s + "Type=oneshot\n";
+        QString oldfan = g_fanDev.getFan();
+        QString oldhwmon = g_fanDev.getHwmon();
+        hideGroup();
+        disablePushButton();
+        for (int n = 0; n < 11; n++){
+            QString hwmon("hwmon");
+            hwmon.append(QString::number(n));
+            QDir hwmonDir = g_hwmonDir + QDir::separator() + hwmon;
+            if (!hwmonDir.exists()) continue;
+            g_fanDev.setHwmon(g_hwmonDir, hwmon);
+            for (int m = 0; m < 11; m++){
+                QString fan("fan");
+                fan.append(QString::number(m));
+                QFile fan_input( hwmonDir.path() + QDir::separator() + fan + "_input");
+                if (! fan_input.exists()) continue;
+                g_fanDev.setFan(fan);
+                s = s + createSystemDExexStart() + "\n";
+             }
+        }
+
+        s = s + "[Install]\n";
+        s = s + "WantedBy=basic.target suspend.target hibernate.target\n\n";
+
+        out << s;
+        systemDfile.close();
+        QProcess::execute("systemctl daemon-reload");
+
+        QMessageBox::information(this, "Service installed successfully",
+                                 "Service installed successfully!\nNow you can enable the service running:\nsystemctl enable " +
+                                 g_systemdName + ".service");
+        enableHwmon();
+        g_fanDev.setHwmon(oldhwmon);
+        initFan(oldfan);
+        refreshDeleteSystemDAllStanza();
+    } else {
+        QMessageBox::warning(this, "Wrong permission", "You don't have write permission on file:\n" + sFile);
+        initFan(g_fanDev.getFan());
+    }
+}
+
+void MainWindow::on_deleteSystemDAllpushButton_clicked()
+{
+    QString sFile = g_systemdDir + "/" + g_systemdName + ".service";
+    QFile systemDfile( sFile );
+
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Confirm delete", "Are you sure to remove systemD stanza?\n" + sFile,
+                                  QMessageBox::Yes|QMessageBox::No);
+
+    if ( reply == QMessageBox::Yes ) {
+        QString strStanza = g_systemdName + "-" + g_fanDev.getHwmonNum() + "-" + g_fanDev.getFan() + ".service";
+        QProcess::execute("systemctl stop " + strStanza);
+        QProcess::execute("systemctl disable " + strStanza);
+        systemDfile.remove();
+        QProcess::execute("systemctl daemon-reload");
+        QProcess::execute("systemctl reset-failed");
+        //initFan(g_fanDev.getFan());
+    }
+    refreshDeleteSystemDAllStanza();
+
 }
 
 void MainWindow::deleteSystemDStanza()
