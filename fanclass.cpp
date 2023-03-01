@@ -38,6 +38,17 @@ QString fanClass::getHwmonNum() const
     return m_strHwmonNum;
 }
 
+QString fanClass::getHwmonName() const {
+    QFile fan_file(m_strHwmon + "/name");
+    QString name;
+    if( fan_file.open(QIODevice::ReadOnly) ) {
+        name = fan_file.readAll().trimmed();
+        fan_file.close();
+    }
+
+    return name;
+}
+
 QString fanClass::getFan() const {
     return m_strFan;
 }

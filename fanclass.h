@@ -21,6 +21,7 @@ public:
     void setFan(const QString& strFan );
     QString getHwmon() const;
     QString getHwmonNum() const;
+    QString getHwmonName() const;
     QString getFan() const;
     QString getPwm() const;
     int getFanAlarm() const;

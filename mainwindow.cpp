@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     g_systemdDir = "/etc/systemd/system";
     g_systemdName = "controlfans";
 
-    setFixedSize(800, 470);
+    //setFixedSize(800, 470);
 
     setupMenuBar();
     hideGroup();
@@ -372,69 +372,91 @@ void MainWindow::refreshDeleteSystemDAllStanza()
 
 void MainWindow::enableHwmon(){
     // enable all available hwmon
-
-    QDir hwmon0Dir = g_hwmonDir + "/hwmon0";
-    if (hwmon0Dir.exists()) {
+    QString name;
+    g_fanDev.setHwmon(g_hwmonDir, "hwmon0");
+    name = g_fanDev.getHwmonName();
+    if ( !name.isEmpty() ) {
+        ui->hwmon0radioButton->setText("hwmon0 (" + name + ")");
         ui->hwmon0radioButton->setCheckable(true);
         ui->hwmon0radioButton->setDisabled(false);
     }
 
-    QDir hwmon1Dir = g_hwmonDir + "/hwmon1";
-    if (hwmon1Dir.exists()) {
+    g_fanDev.setHwmon(g_hwmonDir, "hwmon1");
+    name = g_fanDev.getHwmonName();
+    if ( !name.isEmpty() ) {
+        ui->hwmon1radioButton->setText("hwmon1 (" + name + ")");
         ui->hwmon1radioButton->setCheckable(true);
         ui->hwmon1radioButton->setDisabled(false);
     }
 
-    QDir hwmon2Dir = g_hwmonDir + "/hwmon2";
-    if (hwmon2Dir.exists()) {
+    g_fanDev.setHwmon(g_hwmonDir, "hwmon2");
+    name = g_fanDev.getHwmonName();
+    if ( !name.isEmpty() ) {
+        ui->hwmon2radioButton->setText("hwmon2 (" + name + ")");
         ui->hwmon2radioButton->setCheckable(true);
         ui->hwmon2radioButton->setDisabled(false);
     }
 
-    QDir hwmon3Dir = g_hwmonDir + "/hwmon3";
-    if (hwmon3Dir.exists()) {
+    g_fanDev.setHwmon(g_hwmonDir, "hwmon3");
+    name = g_fanDev.getHwmonName();
+    if ( !name.isEmpty() ) {
+        ui->hwmon3radioButton->setText("hwmon3 (" + name + ")");
         ui->hwmon3radioButton->setCheckable(true);
         ui->hwmon3radioButton->setDisabled(false);
     }
 
-    QDir hwmon4Dir = g_hwmonDir + "/hwmon4";
-    if (hwmon4Dir.exists()) {
+    g_fanDev.setHwmon(g_hwmonDir, "hwmon4");
+    name = g_fanDev.getHwmonName();
+    if ( !name.isEmpty() ) {
+        ui->hwmon4radioButton->setText("hwmon4 (" + name + ")");
         ui->hwmon4radioButton->setCheckable(true);
         ui->hwmon4radioButton->setDisabled(false);
     }
 
-    QDir hwmon5Dir = g_hwmonDir + "/hwmon5";
-    if (hwmon5Dir.exists()) {
+    g_fanDev.setHwmon(g_hwmonDir, "hwmon5");
+    name = g_fanDev.getHwmonName();
+    if ( !name.isEmpty() ) {
+        ui->hwmon5radioButton->setText("hwmon5 (" + name + ")");
         ui->hwmon5radioButton->setCheckable(true);
         ui->hwmon5radioButton->setDisabled(false);
     }
 
-    QDir hwmon6Dir = g_hwmonDir + "/hwmon6";
-    if (hwmon6Dir.exists()) {
+    g_fanDev.setHwmon(g_hwmonDir, "hwmon6");
+    name = g_fanDev.getHwmonName();
+    if ( !name.isEmpty() ) {
+        ui->hwmon6radioButton->setText("hwmon6 (" + name + ")");
         ui->hwmon6radioButton->setCheckable(true);
         ui->hwmon6radioButton->setDisabled(false);
     }
 
-    QDir hwmon7Dir = g_hwmonDir + "/hwmon7";
-    if (hwmon7Dir.exists()) {
+    g_fanDev.setHwmon(g_hwmonDir, "hwmon7");
+    name = g_fanDev.getHwmonName();
+    if ( !name.isEmpty() ) {
+        ui->hwmon7radioButton->setText("hwmon7 (" + name + ")");
         ui->hwmon7radioButton->setCheckable(true);
         ui->hwmon7radioButton->setDisabled(false);
     }
 
-    QDir hwmon8Dir = g_hwmonDir + "/hwmon8";
-    if (hwmon8Dir.exists()) {
+    g_fanDev.setHwmon(g_hwmonDir, "hwmon8");
+    name = g_fanDev.getHwmonName();
+    if ( !name.isEmpty() ) {
+        ui->hwmon8radioButton->setText("hwmon8 (" + name + ")");
         ui->hwmon8radioButton->setCheckable(true);
         ui->hwmon8radioButton->setDisabled(false);
     }
 
-    QDir hwmon9Dir = g_hwmonDir + "/hwmon9";
-    if (hwmon9Dir.exists()) {
+    g_fanDev.setHwmon(g_hwmonDir, "hwmon9");
+    name = g_fanDev.getHwmonName();
+    if ( !name.isEmpty() ) {
+        ui->hwmon9radioButton->setText("hwmon9 (" + name + ")");
         ui->hwmon9radioButton->setCheckable(true);
         ui->hwmon9radioButton->setDisabled(false);
     }
 
-    QDir hwmon10Dir = g_hwmonDir + "/hwmon10";
-    if (hwmon10Dir.exists()) {
+    g_fanDev.setHwmon(g_hwmonDir, "hwmon10");
+    name = g_fanDev.getHwmonName();
+    if ( !name.isEmpty() ) {
+        ui->hwmon10radioButton->setText("hwmon10 (" + name + ")");
         ui->hwmon10radioButton->setCheckable(true);
         ui->hwmon10radioButton->setDisabled(false);
     }
