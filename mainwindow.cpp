@@ -350,7 +350,7 @@ void MainWindow::enableEditButton() {
 
 void MainWindow::enableDeleteSystemDStanza()
 {
-    QString sFile = g_systemdDir + "/" + g_systemdName + "-" + g_fanDev.getHwmonNum() + "-" + g_fanDev.getFan() + ".service";
+    QString sFile = g_systemdDir + "/" + g_systemdName + "-" + g_fanDev.getHwmonName() + "-" + g_fanDev.getFan() + ".service";
     QFileInfo systemDfile( sFile );
 
     if ( systemDfile.exists() && systemDfile.isFile() ) {
@@ -360,7 +360,7 @@ void MainWindow::enableDeleteSystemDStanza()
 
 void MainWindow::refreshDeleteSystemDAllStanza()
 {
-    QString sFile = g_systemdDir + "/" + g_systemdName + ".service";
+    QString sFile = g_systemdDir + "/" + g_systemdName + "-" + g_fanDev.getHwmonName() + ".service";
     QFileInfo systemDfile( sFile );
 
     if ( systemDfile.exists() && systemDfile.isFile() ) {
@@ -547,6 +547,7 @@ void MainWindow::initHwmon(QString strHwmon) {
 void MainWindow::initHwmon() {
     QString strHwmon = g_fanDev.getHwmon();
     initHwmon(strHwmon);
+    refreshDeleteSystemDAllStanza();
 }
 
 void MainWindow::on_hwmon0radioButton_clicked()
@@ -839,13 +840,14 @@ void MainWindow::savePwmAutoPoint5Temp(const int i)
 void MainWindow::createSystemDStanza()
 {
     // create systemd stanza
-    QString sFile = g_systemdDir + "/" + g_systemdName + "-" + g_fanDev.getHwmonNum() + "-" + g_fanDev.getFan() + ".service";
+    QString strStanza = g_systemdName + "-" + g_fanDev.getHwmonName() + "-" + g_fanDev.getFan() + ".service";
+    QString sFile = g_systemdDir + "/" + strStanza;
     QFile systemDfile( sFile );
     QTextStream out(&systemDfile);
 
     if ( systemDfile.open(QIODevice::WriteOnly | QIODevice::Text) ) {
         QString s = "[Unit]\n";
-        s = s + "Description=" + g_systemdName + " " + g_fanDev.getHwmonNum() + " " + g_fanDev.getFan() + "\n";
+        s = s + "Description=" + g_systemdName + " " + g_fanDev.getHwmonName() + " " + g_fanDev.getFan() + "\n";
         s = s + "DefaultDependencies=no\n";
         s = s + "After=sysinit.target local-fs.target suspend.target hibernate.target\n";
         s = s + "Before=basic.target\n\n";
@@ -860,53 +862,56 @@ void MainWindow::createSystemDStanza()
 
         QMessageBox::information(this, "Service installed successfully",
                                  "Service installed successfully!\nNow you can enable the service running:\nsystemctl enable " +
-                                 g_systemdName + "-" + g_fanDev.getHwmonNum() + "-" + g_fanDev.getFan() + ".service");
+                                 strStanza);
+        systemDfile.close();
     } else {
         QMessageBox::warning(this, "Wrong permission", "You don't have write permission on file:\n" + sFile);
-        initFan(g_fanDev.getFan());
+
     }
-    systemDfile.close();
+    initFan(g_fanDev.getFan());
 }
 
 QString MainWindow::createSystemDExexStart()
 {
     QString s = "";
-    QString pwmFile = g_fanDev.getHwmon() + "/" + g_fanDev.getPwm();
+    QString pwmFile = g_fanDev.getHwmonDevicePath() + "/" + g_fanDev.getPwm();
+
     int i;
     i = g_fanDev.getPwmPwm();
     if ( (i != -1) && ( i >= 0 ) && ( i <= 255 ) ) {
-        s = "ExecStart=/bin/sh -c 'echo " + QString::number(i) + " > " + pwmFile + "'\n";
+        s = "ExecStart=/bin/bash -c 'echo " + QString::number(i) + " > " + pwmFile + "'\n";
     }
     i = g_fanDev.getPwmAutoPoint1Pwm();
     if ( (i != -1) && ( i >= 0 ) && ( i <= 255 ) ) {
-        s = s + "ExecStart=/bin/sh -c 'echo " + QString::number(i) + " > " + pwmFile + "_auto_point1_pwm'\n";
-        s = s + "ExecStart=/bin/sh -c 'echo " + QString::number(g_fanDev.getPwmAutoPoint1Temp()) + " > " + pwmFile + "_auto_point1_temp'\n";
+        s = s + "ExecStart=/bin/bash -c 'echo " + QString::number(i) + " > " + pwmFile + "_auto_point1_pwm'\n";
+        s = s + "ExecStart=/bin/bash -c 'echo " + QString::number(g_fanDev.getPwmAutoPoint1Temp()) + " > " + pwmFile + "_auto_point1_temp'\n";
     }
     i = g_fanDev.getPwmAutoPoint2Pwm();
     if ( (i != -1) && ( i >= 0 ) && ( i <= 255 ) ) {
-        s = s + "ExecStart=/bin/sh -c 'echo " + QString::number(i) + " > " + pwmFile + "_auto_point2_pwm'\n";
-        s = s + "ExecStart=/bin/sh -c 'echo " + QString::number(g_fanDev.getPwmAutoPoint2Temp()) + " > " + pwmFile + "_auto_point2_temp'\n";
+        s = s + "ExecStart=/bin/bash -c 'echo " + QString::number(i) + " > " + pwmFile + "_auto_point2_pwm'\n";
+        s = s + "ExecStart=/bin/bash -c 'echo " + QString::number(g_fanDev.getPwmAutoPoint2Temp()) + " > " + pwmFile + "_auto_point2_temp'\n";
     }
     i = g_fanDev.getPwmAutoPoint3Pwm();
     if ( (i != -1) && ( i >= 0 ) && ( i <= 255 ) ) {
-        s = s + "ExecStart=/bin/sh -c 'echo " + QString::number(i) + " > " + pwmFile + "_auto_point3_pwm'\n";
-        s = s + "ExecStart=/bin/sh -c 'echo " + QString::number(g_fanDev.getPwmAutoPoint3Temp()) + " > " + pwmFile + "_auto_point3_temp'\n";
+        s = s + "ExecStart=/bin/bash -c 'echo " + QString::number(i) + " > " + pwmFile + "_auto_point3_pwm'\n";
+        s = s + "ExecStart=/bin/bash -c 'echo " + QString::number(g_fanDev.getPwmAutoPoint3Temp()) + " > " + pwmFile + "_auto_point3_temp'\n";
     }
     i = g_fanDev.getPwmAutoPoint4Pwm();
     if ( (i != -1) && ( i >= 0 ) && ( i <= 255 ) ) {
-        s = s + "ExecStart=/bin/sh -c 'echo " + QString::number(i) + " > " + pwmFile + "_auto_point4_pwm'\n";
-        s = s + "ExecStart=/bin/sh -c 'echo " + QString::number(g_fanDev.getPwmAutoPoint4Temp()) + " > " + pwmFile + "_auto_point4_temp'\n";
+        s = s + "ExecStart=/bin/bash -c 'echo " + QString::number(i) + " > " + pwmFile + "_auto_point4_pwm'\n";
+        s = s + "ExecStart=/bin/bash -c 'echo " + QString::number(g_fanDev.getPwmAutoPoint4Temp()) + " > " + pwmFile + "_auto_point4_temp'\n";
     }
     i = g_fanDev.getPwmAutoPoint5Pwm();
     if ( (i != -1) && ( i >= 0 ) && ( i <= 255 ) ) {
-        s = s + "ExecStart=/bin/sh -c 'echo " + QString::number(i) + " > " + pwmFile + "_auto_point5_pwm'\n";
-        s = s + "ExecStart=/bin/sh -c 'echo " + QString::number(g_fanDev.getPwmAutoPoint5Temp()) + " > " + pwmFile + "_auto_point5_temp'\n";
+        s = s + "ExecStart=/bin/bash -c 'echo " + QString::number(i) + " > " + pwmFile + "_auto_point5_pwm'\n";
+        s = s + "ExecStart=/bin/bash -c 'echo " + QString::number(g_fanDev.getPwmAutoPoint5Temp()) + " > " + pwmFile + "_auto_point5_temp'\n";
     }
     return s;
 }
 
 void MainWindow::on_createSystemDAllpushButton_clicked() {
-    QString sFile = g_systemdDir + "/" + g_systemdName + ".service";
+    QString strStanza =  g_systemdName + "-" + g_fanDev.getHwmonName() + ".service";
+    QString sFile = g_systemdDir + "/" + strStanza;
     QFile systemDfile( sFile );
     QTextStream out(&systemDfile);
     if ( systemDfile.open(QIODevice::WriteOnly | QIODevice::Text) ) {
@@ -918,24 +923,15 @@ void MainWindow::on_createSystemDAllpushButton_clicked() {
         s = s + "[Service]\n";
         s = s + "Type=oneshot\n";
         QString oldfan = g_fanDev.getFan();
-        QString oldhwmon = g_fanDev.getHwmon();
-        hideGroup();
-        disablePushButton();
-        for (int n = 0; n < 11; n++){
-            QString hwmon("hwmon");
-            hwmon.append(QString::number(n));
-            QDir hwmonDir = g_hwmonDir + QDir::separator() + hwmon;
-            if (!hwmonDir.exists()) continue;
-            g_fanDev.setHwmon(g_hwmonDir, hwmon);
-            for (int m = 0; m < 11; m++){
-                QString fan("fan");
-                fan.append(QString::number(m));
-                QFile fan_input( hwmonDir.path() + QDir::separator() + fan + "_input");
-                if (! fan_input.exists()) continue;
-                g_fanDev.setFan(fan);
-                s = s + createSystemDExexStart() + "\n";
-             }
-        }
+
+        for (int m = 1; m < 11; m++){
+            QString fan("fan");
+            fan.append(QString::number(m));
+            QFile fan_input(g_hwmonDir + QDir::separator() + g_fanDev.getHwmonNum() + QDir::separator() + fan + "_input");
+            if (! fan_input.exists()) continue;
+            g_fanDev.setFan(fan);
+            s = s + createSystemDExexStart() + "\n";
+         }
 
         s = s + "[Install]\n";
         s = s + "WantedBy=basic.target suspend.target hibernate.target\n\n";
@@ -946,20 +942,18 @@ void MainWindow::on_createSystemDAllpushButton_clicked() {
 
         QMessageBox::information(this, "Service installed successfully",
                                  "Service installed successfully!\nNow you can enable the service running:\nsystemctl enable " +
-                                 g_systemdName + ".service");
-        enableHwmon();
-        g_fanDev.setHwmon(oldhwmon);
-        initFan(oldfan);
+                                 strStanza);
+
         refreshDeleteSystemDAllStanza();
     } else {
         QMessageBox::warning(this, "Wrong permission", "You don't have write permission on file:\n" + sFile);
-        initFan(g_fanDev.getFan());
     }
 }
 
 void MainWindow::on_deleteSystemDAllpushButton_clicked()
 {
-    QString sFile = g_systemdDir + "/" + g_systemdName + ".service";
+    QString strStanza = g_systemdName + "-" + g_fanDev.getHwmonName() + ".service";
+    QString sFile = g_systemdDir + "/" + strStanza;
     QFile systemDfile( sFile );
 
     QMessageBox::StandardButton reply;
@@ -967,7 +961,6 @@ void MainWindow::on_deleteSystemDAllpushButton_clicked()
                                   QMessageBox::Yes|QMessageBox::No);
 
     if ( reply == QMessageBox::Yes ) {
-        QString strStanza = g_systemdName + "-" + g_fanDev.getHwmonNum() + "-" + g_fanDev.getFan() + ".service";
         QProcess::execute("systemctl stop " + strStanza);
         QProcess::execute("systemctl disable " + strStanza);
         systemDfile.remove();
@@ -1031,7 +1024,8 @@ void MainWindow::on_createSystemDpushButton_clicked()
 
 void MainWindow::on_deleteSystemDpushButton_clicked()
 {
-    QString sFile = g_systemdDir + "/" + g_systemdName + "-" + g_fanDev.getHwmonNum() + "-" + g_fanDev.getFan() + ".service";
+    QString strStanza = g_systemdName + "-" + g_fanDev.getHwmonName() + "-" + g_fanDev.getFan() + ".service";
+    QString sFile = g_systemdDir + "/" + strStanza;
     QFile systemDfile( sFile );
 
     QMessageBox::StandardButton reply;
@@ -1039,7 +1033,6 @@ void MainWindow::on_deleteSystemDpushButton_clicked()
                                   QMessageBox::Yes|QMessageBox::No);
 
     if ( reply == QMessageBox::Yes ) {
-        QString strStanza = g_systemdName + "-" + g_fanDev.getHwmonNum() + "-" + g_fanDev.getFan() + ".service";
         QProcess::execute("systemctl stop " + strStanza);
         QProcess::execute("systemctl disable " + strStanza);
         systemDfile.remove();

@@ -22,6 +22,7 @@ public:
     QString getHwmon() const;
     QString getHwmonNum() const;
     QString getHwmonName() const;
+    QString getHwmonDevicePath() const;
     QString getFan() const;
     QString getPwm() const;
     int getFanAlarm() const;

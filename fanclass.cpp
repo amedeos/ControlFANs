@@ -1,5 +1,6 @@
 #include "fanclass.h"
 #include <QFile>
+#include <QFileInfo>
 
 fanClass::fanClass(QObject *parent)
     : QObject(parent)
@@ -36,6 +37,12 @@ QString fanClass::getHwmon() const {
 QString fanClass::getHwmonNum() const
 {
     return m_strHwmonNum;
+}
+
+QString fanClass::getHwmonDevicePath() const
+{
+    QFileInfo dev(m_strHwmon + "/device");
+    return dev.canonicalFilePath()+"/hwmon/hwmon[[:print:]]*";
 }
 
 QString fanClass::getHwmonName() const {
