@@ -917,8 +917,7 @@ void MainWindow::on_createSystemDAllpushButton_clicked() {
         QString s = "[Unit]\n";
         s = s + "Description=" + g_systemdName + "\n";
         s = s + "DefaultDependencies=no\n";
-        s = s + "After=sysinit.target local-fs.target suspend.target hibernate.target\n";
-        s = s + "Before=basic.target\n\n";
+        s = s + "After=sysinit.target local-fs.target suspend.target hibernate.target lm_sensors.service\n\n";
         s = s + "[Service]\n";
         s = s + "Type=oneshot\n";
         QString oldfan = g_fanDev.getFan();
