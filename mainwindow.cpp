@@ -849,8 +849,7 @@ void MainWindow::createSystemDStanza()
         QString s = "[Unit]\n";
         s = s + "Description=" + g_systemdName + " " + g_fanDev.getHwmonName() + " " + g_fanDev.getFan() + "\n";
         s = s + "DefaultDependencies=no\n";
-        s = s + "After=sysinit.target local-fs.target suspend.target hibernate.target\n";
-        s = s + "Before=basic.target\n\n";
+        s = s + "After=sysinit.target local-fs.target suspend.target hibernate.target lm_sensors.service\n\n";
         s = s + "[Service]\n";
         s = s + "Type=oneshot\n";
         s = s + createSystemDExexStart() + "\n";
